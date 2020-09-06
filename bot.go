@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -132,7 +130,6 @@ func HandleMsgFromDebuggingChannel(event *model.WebSocketEvent) {
 		// }
 
 		if post.ParentId == "" {
-			// if you see any word matching 'hello' then respond
 			if matched, _ := regexp.MatchString(`(?:^|\W)leave day(?:$|\W)`, post.Message); matched {
 				SendMsgToChannel(dm.Id, "You have 16 leave days left.", post.Id)
 				return
@@ -154,33 +151,6 @@ func HandleMsgFromDebuggingChannel(event *model.WebSocketEvent) {
 			}
 
 			defer response.Body.Close()
-			body, err := ioutil.ReadAll(response.Body)
-
-			if err != nil {
-				//handle read response error
-			}
-
-			fmt.Printf("%s\n", string(body))
-			// if req, err := http.NewRequest("POST", AWC_URL+endpoint, strings.NewReader(form.Encode())); err != nil {
-			// 	println("There was a problem sending post to AWC")
-			// 	return
-			// } else {
-			// 	println(req.URL.Host)
-			// 	println(req.URL.Path)
-			// 	trace := &httptrace.ClientTrace{
-			// 		DNSDone: func(dnsInfo httptrace.DNSDoneInfo) {
-			// 			fmt.Printf("DNS Info: %+v\n", dnsInfo)
-			// 		},
-			// 		GotConn: func(connInfo httptrace.GotConnInfo) {
-			// 			fmt.Printf("Got Conn: %+v\n", connInfo)
-			// 		},
-			// 	}
-			// 	req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))
-			// 	if _, err := http.DefaultTransport.RoundTrip(req); err != nil {
-			// 		log.Fatal(err)
-			// 	}
-			// }
-			// SendMsgToChannel(dm.Id, "I did not understand you!", post.ParentId)
 		}
 	}
 
