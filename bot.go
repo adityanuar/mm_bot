@@ -13,13 +13,13 @@ import (
 
 const (
 	URL              = "http://localhost:8065"
-	TEAM_NAME        = "awc"
+	TEAM_NAME        = "team"
 	CHANNEL_LOG_NAME = "system_update"
 
 	BOT_TOKEN_SECRET = "h146hbzg6fnajnpn88jmtrwn5h"
 	BOT_ID           = "5h4ifgkozpnuz89naqycuhcxmr"
 
-	AWC_URL = "http://127.0.0.1:8041/index.php/"
+	API_URL = "http://127.0.0.1:8041/"
 )
 
 var client *model.Client4
@@ -143,7 +143,7 @@ func HandleMsgFromDebuggingChannel(event *model.WebSocketEvent) {
 			form.Add("comment", post.Message)
 			endpoint := "timesheet/broadcast_task_comment_except_user"
 			//one-line post request/response...
-			response, err := http.PostForm(AWC_URL+endpoint, form)
+			response, err := http.PostForm(API_URL+endpoint, form)
 
 			//okay, moving on...
 			if err != nil {
